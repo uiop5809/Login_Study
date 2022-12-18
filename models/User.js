@@ -75,6 +75,20 @@ userSchema.methods.generateToken = function (cb) {
   });
 };
 
+// 토큰을 복호화하는 메소드
+userSchema.methods.findByToken = function (token, cb) {
+  const user = this;
+  // 토큰을 decode 한다.
+  jwt.verify(token, "secretToken", function (err, decoded) {
+    // 유저 아이디를 이용해서 유저를 찾은 다음에
+    // 클라이언트에서 가져온 token과 db에 보관된 토큰이 일치하는지 확인
+    user.findOne({ _id: decoded, token: token }, function (err, user) {
+      if (err) return cb(err);
+      cb(null, user);
+    });
+  });
+};
+
 const User = mongoose.model("User", userSchema); // 스키마를 모델로 감싸준다.
 
 module.exports = { User }; // 다른 곳에서도 사용할 수 있도록 export 해준다.
