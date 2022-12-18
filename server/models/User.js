@@ -76,7 +76,7 @@ userSchema.methods.generateToken = function (cb) {
 };
 
 // 토큰을 복호화하는 메소드
-userSchema.methods.findByToken = function (token, cb) {
+userSchema.statics.findByToken = function (token, cb) {
   const user = this;
   // 토큰을 decode 한다.
   jwt.verify(token, "secretToken", function (err, decoded) {
