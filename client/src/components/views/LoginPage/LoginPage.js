@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../../_actions/user_action";
+import Auth from "../../../hoc/auth";
 
-export default function LoginPage() {
+function LoginPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { value, type } = e.target;
@@ -58,3 +59,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+export default Auth(LoginPage, false);
