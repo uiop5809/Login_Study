@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import { applyMiddleware, createStore } from "redux";
 import promiseMiddleware from "redux-promise"; // promise를 사용하기 위한 미들웨어
 import ReduxThunk from "redux-thunk"; // 비동기를 사용하기 위한 미들웨어
@@ -23,7 +23,7 @@ root.render(
       store={createStoreWithMiddleware(
         Reducer,
         window.__REDUX_DEVTOOLS_EXTENSION__ &&
-          window.__REDUX_DEVTOOLS_EXTENSION__() // redux devtools를 사용하기 위한 코드
+          window.__REDUX_DEVTOOLS_EXTENSION__()
       )}
     >
       <App />
